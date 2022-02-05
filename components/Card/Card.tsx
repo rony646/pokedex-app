@@ -31,10 +31,10 @@ interface CardProps {
 const Card = ({ pokemonType, pokemonName, pokemonImgUrl, typeTags } : CardProps) => {
     const pokemonTypeColor = colors[pokemonType];
 
-    const TouchableCmp = Platform.OS === 'ios' ?  TouchableOpacity : TouchableNativeFeedback;
+    const TouchableComponent = Platform.OS === 'ios' ?  TouchableOpacity : TouchableNativeFeedback;
 
     return(
-        <TouchableCmp>
+        <TouchableComponent>
             <Container color={pokemonTypeColor} style={{width: Platform.OS === 'ios' ? 170 : 180}}>
                 <Title>{pokemonName}</Title>
                 <View style={{marginTop: '5%',}}>
@@ -56,7 +56,7 @@ const Card = ({ pokemonType, pokemonName, pokemonImgUrl, typeTags } : CardProps)
                     source={{uri: `${pokemonImgUrl}`}}
                 />
             </Container>
-        </TouchableCmp>
+        </TouchableComponent>
     )
 }
 
