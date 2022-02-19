@@ -15,8 +15,7 @@ import {
     PokemonImage
 } from './styles';
 import { colors } from '../../constants/color';
-
-export type pokemonTypeNames = 'normal' | 'fighting' | 'flying' | 'ground' | 'poison' | 'rock' | 'bug' | 'ghost' | 'steel' | 'fire' | 'water' | 'grass' | 'eletric' | 'psychic' | 'ice' | 'dragon' | 'dark' | 'fairy'
+import { pokemonTypeNames } from '../../redux/types/commonTypes';
 
 interface CardProps {
     pokemonType: pokemonTypeNames;
