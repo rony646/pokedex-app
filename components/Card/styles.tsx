@@ -19,6 +19,7 @@ export const Title = styled.Text`
     color: ${colors.lightColor};
     font-weight: bold;
     font-size: 20px;
+    text-transform: capitalize;
 `;
 
 export const Tag = styled.View<CardProps>`

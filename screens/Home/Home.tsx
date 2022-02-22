@@ -1,24 +1,31 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import Card from '../../components/Card/Card';
 import { Text } from 'react-native';
 import { Container, Title, PokeballImage, PokemonList } from './styles';
-import { Pokemon } from '../../redux/types/commonTypes';
-import { useAppSelector } from '../../redux/hooks';
+
+import { getAllPokemons } from '../../redux/actions/listActions';
+import { useDispatch } from 'react-redux';
+import { useAppSelector, useAppDispatch } from '../../redux/hooks';
 
 
 const Home = () => {
+    const dispatch = useDispatch();
 
     const pokemons = useAppSelector(state => state.pokemons);
 
+    console.log(pokemons);
+
     const renderCard = (item: any) => (
         <Card
-            pokemonName={item.item.name}
-            pokemonType={item.item.type}
-            pokemonImgUrl={item.item.imgUrl}
-            typeTags={item.item.typeTags}
+            name={item.item.name}
+            url={item.item.url}
         />
     );
+
+    useEffect(() => {
+        dispatch(getAllPokemons());
+    }, []);
 
     return(
         <Container>
@@ -29,7 +36,7 @@ const Home = () => {
                     columnWrapperStyle={{justifyContent: 'space-between'}}
                     data={pokemons} 
                     renderItem={renderCard} 
-                    keyExtractor={item => item.id.toString()}
+                    keyExtractor={item => item.name}
                     numColumns={2}
                 />) : 
                 (<Text>No pokemons were found to show :(</Text>)

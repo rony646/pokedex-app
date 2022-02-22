@@ -18,25 +18,21 @@ import { colors } from '../../constants/color';
 import { pokemonTypeNames } from '../../redux/types/commonTypes';
 
 interface CardProps {
-    pokemonType: pokemonTypeNames;
-    pokemonName: string;
-    pokemonImgUrl: string;
-    typeTags: {
-        type: pokemonTypeNames;
-    }[];
+    name: string;
+    url: string;
 }
 
 
-const Card = ({ pokemonType, pokemonName, pokemonImgUrl, typeTags } : CardProps) => {
-    const pokemonTypeColor = colors[pokemonType];
+const Card = ({ name, url } : CardProps) => {
+    const pokemonTypeColor = colors.grass;
 
     const TouchableComponent = Platform.OS === 'ios' ?  TouchableOpacity : TouchableNativeFeedback;
 
     return(
         <TouchableComponent>
             <Container color={pokemonTypeColor} style={{width: Platform.OS === 'ios' ? 170 : 180}}>
-                <Title>{pokemonName}</Title>
-                <View style={{marginTop: '5%',}}>
+                <Title>{name}</Title>
+                {/* <View style={{marginTop: '5%',}}>
                     {typeTags.map(tag => 
                         <Tag color={pokemonTypeColor} key={tag.type}>
                             <Text 
@@ -49,11 +45,11 @@ const Card = ({ pokemonType, pokemonName, pokemonImgUrl, typeTags } : CardProps)
                             </Text>
                         </Tag>)
                     }
-                </View>
+                </View> */}
                 <PokeballBackground source={require('../../assets/pokeball.png')}/>
-                <PokemonImage 
+                {/* <PokemonImage 
                     source={{uri: `${pokemonImgUrl}`}}
-                />
+                /> */}
             </Container>
         </TouchableComponent>
     )

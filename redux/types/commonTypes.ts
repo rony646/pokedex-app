@@ -10,6 +10,12 @@ export type Pokemon = {
     }[];
 };
 
+export type PokemonResume = {
+    name: string;
+    url: string;
+}
+
 export interface State {
-    pokemons: Pokemon[];
+    pokemons: PokemonResume[];
+    loading: boolean;
 };
