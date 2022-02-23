@@ -44,8 +44,8 @@ export const PokeballBackground = styled.Image`
 
 export const PokemonImage = styled.Image`
     position: absolute;
-    height: 83px;
-    width: 83px;
+    height: 95px;
+    width: 95px;
     bottom: 8px;
     right: 5px;
 `;

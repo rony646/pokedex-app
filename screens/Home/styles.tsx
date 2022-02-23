@@ -18,12 +18,13 @@ export const Title = styled.Text`
 `;
 
 export const PokeballImage = styled.Image`
-    width: 250px;
-    height: 250px;
+    width: 220px;
+    height: 220px;
     margin-left: 50%;
-    margin-top: -20%;
+    margin-top: -23%;
     opacity: 0.2;
 `;
 
 export const PokemonList = styled.FlatList`
+    margin-bottom: 50px;
 `;

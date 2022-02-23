@@ -12,7 +12,7 @@ interface GetPokemonListAction {
 export const getAllPokemons = () => {
     return async (dispatch: Dispatch) => {
         try {
-            const response = await fetch('https://pokeapi.co/api/v2/pokemon/?limit=30');
+            const response = await fetch('https://pokeapi.co/api/v2/pokemon/?limit=50');
             
             if(!response.ok) {
                 throw new Error('Something went wrong!');

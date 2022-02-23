@@ -14,8 +14,6 @@ const Home = () => {
 
     const pokemons = useAppSelector(state => state.pokemons);
 
-    console.log(pokemons);
-
     const renderCard = (item: any) => (
         <Card
             name={item.item.name}
@@ -38,6 +36,7 @@ const Home = () => {
                     renderItem={renderCard} 
                     keyExtractor={item => item.name}
                     numColumns={2}
+                    onEndReached={() => console.log('end reached')}
                 />) : 
                 (<Text>No pokemons were found to show :(</Text>)
             }

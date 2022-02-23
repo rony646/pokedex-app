@@ -18,6 +18,16 @@ export const colors = {
     ground: '#DEC16B',
     bug: '#A7B723',
     fire: '#F57D31',
-    eletric: '#F9CF30',
+    electric: '#F9CF30',
     dragon: '#7037FF',
 }
+
+export function getPokemonTypeColor(type: string) {
+    const pokemonTypeColor = colors[`${type}`];
+
+    if(!pokemonTypeColor) {
+        return colors.normal;
+    }
+
+    return pokemonTypeColor;
+};
