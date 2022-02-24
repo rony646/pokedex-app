@@ -6,13 +6,28 @@ export const SET_LOADING = "SET_LOADING";
 
 interface GetPokemonListAction {
     type: typeof GET_POKEMON_LIST;
-    payload: PokemonResume[];
+    payload: {
+        fetchUrl: string;
+        list: PokemonResume[],
+        initial: boolean;
+    };
 };
 
-export const getAllPokemons = () => {
+interface SetLoadingAction {
+    type: typeof SET_LOADING;
+    payload: boolean;
+}
+
+
+
+export const getPokemons = (fetchUrl: string, initial = false) => {
     return async (dispatch: Dispatch) => {
         try {
-            const response = await fetch('https://pokeapi.co/api/v2/pokemon/?limit=50');
+            dispatch({
+                type: SET_LOADING,
+                payload: true,
+            })
+            const response = await fetch(fetchUrl);
             
             if(!response.ok) {
                 throw new Error('Something went wrong!');
@@ -22,7 +37,11 @@ export const getAllPokemons = () => {
 
             dispatch({
                 type: GET_POKEMON_LIST,
-                payload: data.results,
+                payload: {
+                    fetchUrl: data.next,
+                    list: data.results,
+                    initial: initial,
+                },
             })
 
         } catch (err) {
@@ -31,4 +50,5 @@ export const getAllPokemons = () => {
     }
 };
 
-export type pokemonListActionsTypes = GetPokemonListAction;
+
+export type pokemonListActionsTypes = GetPokemonListAction | SetLoadingAction;

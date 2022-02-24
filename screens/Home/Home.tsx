@@ -2,17 +2,27 @@ import React, { useEffect } from 'react';
 
 import Card from '../../components/Card/Card';
 import { Text } from 'react-native';
-import { Container, Title, PokeballImage, PokemonList } from './styles';
+import { 
+    Container, 
+    Title, 
+    PokeballImage, 
+    PokemonList, 
+    LoadingMsgContainer,
+    LoadMoreButton
+ } from './styles';
+import { colors } from '../../constants/color';
 
-import { getAllPokemons } from '../../redux/actions/listActions';
+import { getPokemons } from '../../redux/actions/listActions';
 import { useDispatch } from 'react-redux';
-import { useAppSelector, useAppDispatch } from '../../redux/hooks';
+import { useAppSelector } from '../../redux/hooks';
 
 
 const Home = () => {
     const dispatch = useDispatch();
 
     const pokemons = useAppSelector(state => state.pokemons);
+    const fetchUrl = useAppSelector(state => state.listUrl);
+    const isLoading = useAppSelector(state => state.loading);
 
     const renderCard = (item: any) => (
         <Card
@@ -21,8 +31,9 @@ const Home = () => {
         />
     );
 
-    useEffect(() => {
-        dispatch(getAllPokemons());
+    useEffect( () => {
+        console.log('App rendered')
+        dispatch(getPokemons('https://pokeapi.co/api/v2/pokemon/?limit=8', true));
     }, []);
 
     return(
@@ -34,12 +45,21 @@ const Home = () => {
                     columnWrapperStyle={{justifyContent: 'space-between'}}
                     data={pokemons} 
                     renderItem={renderCard} 
-                    keyExtractor={item => item.name}
+                    keyExtractor={item => item.url}
                     numColumns={2}
-                    onEndReached={() => console.log('end reached')}
                 />) : 
                 (<Text>No pokemons were found to show :(</Text>)
             }
+            <LoadingMsgContainer>
+                <LoadMoreButton 
+                    title={isLoading ? 'Loading...' : 'Load More'}
+                    color={colors.buttonColor}
+                    disabled={isLoading}
+                    onPress={() => {
+                        dispatch(getPokemons(fetchUrl))
+                    }}
+                />
+            </LoadingMsgContainer>
         </Container>
     ) 
 };

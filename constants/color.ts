@@ -2,6 +2,7 @@ export const colors = {
     textDarkTitle: '#333943',
     lightColor: '#fff',
     blackColor: '#000',
+    buttonColor: '#6c79d8',
     rock: '#B69E31', 
     ghost: '#70559B',
     steel: '#B7B9D0',

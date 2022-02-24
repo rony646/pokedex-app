@@ -26,5 +26,15 @@ export const PokeballImage = styled.Image`
 `;
 
 export const PokemonList = styled.FlatList`
-    margin-bottom: 50px;
+    margin-bottom: 5px;
+`;
+
+export const LoadingMsgContainer = styled.View`
+    height: 100%;
+    width: 100%;
+    height: 100px;
+`
+
+export const LoadMoreButton = styled.Button`
+    
 `;

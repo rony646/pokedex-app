@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback, memo } from 'react';
 
 import { 
     Text, 
@@ -51,7 +51,7 @@ const Card = ({ name, url } : CardProps) => {
 
     const TouchableComponent = Platform.OS === 'ios' ?  TouchableOpacity : TouchableNativeFeedback;
 
-    const fetchPokemonInfo = async () => {
+    const fetchPokemonInfo = useCallback(async () => {
         const response = await fetch(url);
         const data: PokemonApiResponse = await response.json();
 
@@ -61,7 +61,7 @@ const Card = ({ name, url } : CardProps) => {
         }
 
         setPokemonInfo(pokemonData);
-    }
+    }, [pokemonInfo])
 
     useEffect(() => {
         fetchPokemonInfo();
@@ -96,4 +96,4 @@ const Card = ({ name, url } : CardProps) => {
     ) : null;
 }
 
-export default Card;
+export default memo(Card);

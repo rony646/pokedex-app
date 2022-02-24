@@ -17,5 +17,6 @@ export type PokemonResume = {
 
 export interface State {
     pokemons: PokemonResume[];
+    listUrl: string;
     loading: boolean;
 };
