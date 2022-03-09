@@ -1,30 +1,29 @@
-import { StatusBar } from 'expo-status-bar';
-import { useEffect } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import { Provider, useDispatch } from 'react-redux';
-import { getPokemons } from './redux/actions/listActions';
+import { Provider } from 'react-redux';
 import { store } from './redux/store';
+
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import Home from './screens/Home/Home';
 
 export default function App() {
 
+  const Stack = createNativeStackNavigator();
+
   return (
     <Provider store={store}>
-      <View style={styles.container}>
-        {/* <Text>Open up App.tsx to start working on your app!</Text> */}
-        <Home />
-        <StatusBar style="auto" hidden />
-      </View>
+        <NavigationContainer>
+          <Stack.Navigator initialRouteName='Home'>
+            <Stack.Screen 
+              name="home" 
+              component={Home} 
+              options={{
+                headerShown: false,
+              }}
+            />
+          </Stack.Navigator>
+        </NavigationContainer>
     </Provider>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
