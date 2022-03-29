@@ -2,26 +2,33 @@ import { Provider } from 'react-redux';
 import { store } from './redux/store';
 
 import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { RootStack } from './navigation';
 
 import Home from './screens/Home/Home';
+import PokemonDetail from './screens/PokemonDetail';
 
 export default function App() {
-
-  const Stack = createNativeStackNavigator();
 
   return (
     <Provider store={store}>
         <NavigationContainer>
-          <Stack.Navigator initialRouteName='Home'>
-            <Stack.Screen 
-              name="home" 
+          <RootStack.Navigator initialRouteName='Home'>
+            <RootStack.Screen 
+              name="Home" 
               component={Home} 
               options={{
                 headerShown: false,
               }}
             />
-          </Stack.Navigator>
+
+            <RootStack.Screen
+              name="PokemonDetail"
+              component={PokemonDetail}
+              options={{
+                headerShown: false,
+              }}
+            />
+          </RootStack.Navigator>
         </NavigationContainer>
     </Provider>
   );

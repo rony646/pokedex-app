@@ -15,9 +15,15 @@ import { colors } from '../../constants/color';
 import { getPokemons } from '../../redux/actions/listActions';
 import { useDispatch } from 'react-redux';
 import { useAppSelector } from '../../redux/hooks';
+import { NavigationProp } from '@react-navigation/native';
+import { RootStackParamList } from '../../navigation/types';
+
+interface HomeProps {
+    navigation: NavigationProp<RootStackParamList>;
+}
 
 
-const Home = () => {
+const Home = ({ navigation }: HomeProps)=> {
     const dispatch = useDispatch();
 
     const pokemons = useAppSelector(state => state.pokemons);
@@ -28,6 +34,7 @@ const Home = () => {
         <Card
             name={item.item.name}
             url={item.item.url}
+            navigation={navigation}
         />
     );
 

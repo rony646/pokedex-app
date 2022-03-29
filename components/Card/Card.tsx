@@ -17,12 +17,14 @@ import {
 import { colors, getPokemonTypeColor } from '../../constants/color';
 import { pokemonTypeNames } from '../../redux/types/commonTypes';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { NavigationProp } from '@react-navigation/native';
+import { RootStackParamList } from '../../navigation/types';
 
 interface CardProps {
     name: string;
     url: string;
-    navigation?: NativeStackNavigationProp<{}>;    
-}
+    navigation?: NavigationProp<RootStackParamList>;
+};    
 
 interface PokemonInfo {
     type: pokemonTypeNames[] | string[];
@@ -71,8 +73,9 @@ const Card = ({ name, url, navigation } : CardProps) => {
 
     const typeColor = getPokemonTypeColor(pokemonInfo?.type[0] as string);
 
+
     return pokemonInfo ? (
-        <TouchableComponent onPress={() => console.log('teste')}>
+        <TouchableComponent onPress={() => navigation?.navigate('PokemonDetail')}>
             <Container color={typeColor} style={{width: Platform.OS === 'ios' ? 170 : 180}}>
                 <Title>{name}</Title>
                 <View style={{marginTop: '5%',}}>
