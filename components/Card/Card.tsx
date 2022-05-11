@@ -75,7 +75,7 @@ const Card = ({ name, url, navigation } : CardProps) => {
 
 
     return pokemonInfo ? (
-        <TouchableComponent onPress={() => navigation?.navigate('PokemonDetail')}>
+        <TouchableComponent onPress={() => navigation?.navigate('PokemonDetail', { pokemonName: name })}>
             <Container color={typeColor} style={{width: Platform.OS === 'ios' ? 170 : 180}}>
                 <Title>{name}</Title>
                 <View style={{marginTop: '5%',}}>
